@@ -27,20 +27,20 @@ export const metadata: Metadata = {
     siteName: "Dang Thanh Tuan Digital Card",
     images: [
       {
-        url: "/avatar.jpg",
-        width: 800,
-        height: 800,
-        alt: "Dang Thanh Tuan - Founder",
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Dang Thanh Tuan | Personal Digital Card",
       },
     ],
     locale: "en_US",
     type: "website",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Dang Thanh Tuan | Personal Digital Card",
     description: "Founder building EdTech products that make learning stick.",
-    images: ["/avatar.jpg"],
+    images: ["/og-image.png"],
   },
   icons: {
     icon: "/favicon.svg",
