@@ -20,8 +20,7 @@ export default function Avatar() {
           alt="Dang Thanh Tuan Profile Picture"
           fill
           priority
-          quality={95}
-          sizes="(max-width: 768px) 320px, 384px"
+          unoptimized
           className={`object-cover group-hover:scale-[1.28] transition-all duration-500 ease-out ${
             isLoaded ? "opacity-100 scale-[1.20]" : "opacity-0 scale-95"
           }`}
