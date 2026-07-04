@@ -7,8 +7,14 @@ const inter = Inter({
   variable: "--font-sans",
 });
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL
+  ? process.env.NEXT_PUBLIC_SITE_URL
+  : process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : "https://dangthanhtuan.vercel.app";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://dangthanhtuan.dev"),
+  metadataBase: new URL(baseUrl),
   title: "Dang Thanh Tuan - Connect to grow",
   description: "Dang Thanh Tuan - connect to grow",
   keywords: [
@@ -23,11 +29,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dang Thanh Tuan - Connect to grow",
     description: "connect to grow",
-    url: "https://dangthanhtuan.dev", // Placeholder but good for SEO structure
+    url: baseUrl,
     siteName: "Dang Thanh Tuan Digital Card",
     images: [
       {
-        url: "https://dangthanhtuan.dev/og-image.png",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Dang Thanh Tuan - Connect to grow",
@@ -40,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dang Thanh Tuan - Connect to grow",
     description: "connect to grow",
-    images: ["https://dangthanhtuan.dev/og-image.png"],
+    images: ["/og-image.png"],
   },
   icons: {
     icon: [
