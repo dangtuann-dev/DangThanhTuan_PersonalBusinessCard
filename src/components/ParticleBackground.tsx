@@ -12,6 +12,7 @@ interface Particle {
   vx: number;
   vy: number;
   radius: number;
+  opacity: number;
 }
 
 export default function ParticleBackground({ isDark }: ParticleBackgroundProps) {
@@ -32,26 +33,20 @@ export default function ParticleBackground({ isDark }: ParticleBackgroundProps) 
     // Check prefers-reduced-motion
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    // Helper to calculate distance
-    const getDistance = (p1: Particle, p2: Particle) => {
-      const dx = p1.x - p2.x;
-      const dy = p1.y - p2.y;
-      return Math.sqrt(dx * dx + dy * dy);
-    };
-
     // Initialize particles
     const initParticles = () => {
       particles = [];
       // Scale count based on screen width
-      const baseCount = width < 768 ? 30 : 60;
+      const baseCount = width < 768 ? 40 : 80;
       
       for (let i = 0; i < baseCount; i++) {
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.15, // Extremely slow drift
-          vy: (Math.random() - 0.5) * 0.15,
-          radius: Math.random() * 1.5 + 1,
+          vx: (Math.random() - 0.5) * 0.12, // Extremely slow drift
+          vy: (Math.random() - 0.5) * 0.12,
+          radius: Math.random() * 1.5 + 0.8, // Tiny delicate dots
+          opacity: Math.random() * 0.2 + 0.1, // Ambient low opacity (10% - 30%)
         });
       }
     };
@@ -69,7 +64,6 @@ export default function ParticleBackground({ isDark }: ParticleBackgroundProps) 
 
     // Color definitions based on theme
     const particleColor = isDark ? "255, 255, 255" : "0, 0, 0";
-    const maxDistance = 120; // Distance to draw connection lines
 
     const animate = () => {
       ctx.clearRect(0, 0, width, height);
@@ -79,7 +73,7 @@ export default function ParticleBackground({ isDark }: ParticleBackgroundProps) 
         // Draw particle dot
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${particleColor}, 0.25)`;
+        ctx.fillStyle = `rgba(${particleColor}, ${p.opacity})`;
         ctx.fill();
 
         // Update positions if user doesn't prefer reduced motion
@@ -87,27 +81,13 @@ export default function ParticleBackground({ isDark }: ParticleBackgroundProps) 
           p.x += p.vx;
           p.y += p.vy;
 
-          // Bounce off bounds
-          if (p.x < 0 || p.x > width) p.vx *= -1;
-          if (p.y < 0 || p.y > height) p.vy *= -1;
+          // Wrap around edges rather than bouncing (creates a continuous calm drift)
+          if (p.x < 0) p.x = width;
+          if (p.x > width) p.x = 0;
+          if (p.y < 0) p.y = height;
+          if (p.y > height) p.y = 0;
         }
       });
-
-      // Draw connection lines
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dist = getDistance(particles[i], particles[j]);
-          if (dist < maxDistance) {
-            const alpha = (1 - dist / maxDistance) * 0.15; // Muted opacity
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(${particleColor}, ${alpha})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
-      }
 
       animationFrameId = requestAnimationFrame(animate);
     };

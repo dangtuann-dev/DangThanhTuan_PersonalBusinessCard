@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon, MapPin } from "lucide-react";
 import Avatar from "@/components/Avatar";
 import CTAButtons from "@/components/CTAButtons";
 import ParticleBackground from "@/components/ParticleBackground";
@@ -72,8 +72,14 @@ export default function Home() {
           Founder building EdTech products that make learning stick.
         </p>
 
+        {/* Location Marker */}
+        <div className="animate-fade-in-up animation-delay-300 mt-3.5 flex items-center gap-1.5 text-xs sm:text-sm font-medium tracking-wide text-neutral-400 dark:text-neutral-500 select-text">
+          <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-neutral-400 dark:text-neutral-600" />
+          <span>Ho Chi Minh City, Vietnam</span>
+        </div>
+
         {/* CTA Buttons */}
-        <div className="animate-fade-in-up animation-delay-300 w-full flex justify-center">
+        <div className="animate-fade-in-up animation-delay-400 w-full flex justify-center">
           <CTAButtons />
         </div>
       </div>
