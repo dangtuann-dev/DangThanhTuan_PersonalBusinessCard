@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     siteName: "Dang Thanh Tuan Digital Card",
     images: [
       {
-        url: "/og-image.png",
+        url: "https://dangthanhtuan.dev/og-image.png",
         width: 1200,
         height: 630,
         alt: "Dang Thanh Tuan - Connect to grow",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dang Thanh Tuan - Connect to grow",
     description: "connect to grow",
-    images: ["/og-image.png"],
+    images: ["https://dangthanhtuan.dev/og-image.png"],
   },
   icons: {
     icon: [
