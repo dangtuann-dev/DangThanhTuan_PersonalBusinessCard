@@ -9,8 +9,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://dangthanhtuan.dev"),
-  title: "Dang Thanh Tuan | Personal Digital Card",
-  description: "Dang Thanh Tuan - Founder building EdTech products that make learning stick.",
+  title: "Dang Thanh Tuan - Connect to grow",
+  description: "Dang Thanh Tuan - connect to grow",
   keywords: [
     "Dang Thanh Tuan",
     "EdTech Founder",
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Dang Thanh Tuan" }],
   openGraph: {
-    title: "Dang Thanh Tuan | Personal Digital Card",
-    description: "Founder building EdTech products that make learning stick.",
+    title: "Dang Thanh Tuan - Connect to grow",
+    description: "connect to grow",
     url: "https://dangthanhtuan.dev", // Placeholder but good for SEO structure
     siteName: "Dang Thanh Tuan Digital Card",
     images: [
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Dang Thanh Tuan | Personal Digital Card",
+        alt: "Dang Thanh Tuan - Connect to grow",
       },
     ],
     locale: "en_US",
@@ -38,8 +38,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dang Thanh Tuan | Personal Digital Card",
-    description: "Founder building EdTech products that make learning stick.",
+    title: "Dang Thanh Tuan - Connect to grow",
+    description: "connect to grow",
     images: ["/og-image.png"],
   },
   icons: {

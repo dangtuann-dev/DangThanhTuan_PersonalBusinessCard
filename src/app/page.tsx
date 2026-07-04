@@ -75,7 +75,7 @@ export default function Home() {
 
         {/* Muted Tagline */}
         <p className="animate-fade-in-up animation-delay-200 mt-4 text-sm sm:text-base text-neutral-500 dark:text-neutral-400 font-medium leading-relaxed max-w-[280px] sm:max-w-xs text-balance select-text">
-          Founder building EdTech products that make learning stick.
+          connect to grow
         </p>
 
         {/* Location Marker */}
