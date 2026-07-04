@@ -40,6 +40,12 @@ export default function Home() {
       {/* Subtle particle animation background */}
       <ParticleBackground isDark={currentIsDark} />
 
+      {/* Gentle Animated Gradient Mesh */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 select-none opacity-45 dark:opacity-20">
+        <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-neutral-200 dark:bg-neutral-900/60 blur-[80px] sm:blur-[120px] animate-float" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-neutral-300 dark:bg-neutral-900/60 blur-[100px] sm:blur-[150px] animate-float-reverse" />
+      </div>
+
       {/* Elegant Theme Toggle Button */}
       {mounted && (
         <button
