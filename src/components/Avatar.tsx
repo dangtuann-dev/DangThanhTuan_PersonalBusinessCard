@@ -21,7 +21,7 @@ export default function Avatar() {
           fill
           priority
           sizes="(max-width: 768px) 160px, 192px"
-          className={`object-cover grayscale contrast-115 brightness-95 group-hover:grayscale-0 group-hover:scale-105 group-hover:brightness-100 transition-all duration-500 ease-out ${
+          className={`object-cover group-hover:scale-105 transition-all duration-500 ease-out ${
             isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"
           }`}
           onLoad={() => setIsLoaded(true)}

@@ -74,9 +74,9 @@ const buttons: CTAButton[] = [
   {
     name: "Gmail",
     icon: Mail,
-    href: "mailto:dangtuann.dev@gmail.com",
-    isExternal: false,
-    ariaLabel: "Send an email to Dang Thanh Tuan",
+    href: "https://mail.google.com/mail/?view=cm&fs=1&to=dangtuann.dev@gmail.com",
+    isExternal: true,
+    ariaLabel: "Send an email to Dang Thanh Tuan via Gmail",
     tooltip: "Email",
   },
   {
