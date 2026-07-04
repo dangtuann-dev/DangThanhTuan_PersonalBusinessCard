@@ -7,11 +7,7 @@ const inter = Inter({
   variable: "--font-sans",
 });
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL
-  ? process.env.NEXT_PUBLIC_SITE_URL
-  : process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "https://dangthanhtuan.vercel.app";
+const baseUrl = "https://dangthanhtuan.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
