@@ -37,7 +37,7 @@ export default function Home() {
   const currentIsDark = mounted ? isDark : true;
 
   return (
-    <main className="min-h-screen w-full flex flex-col items-center justify-center relative overflow-hidden bg-neutral-50 dark:bg-[#000000] text-neutral-900 dark:text-neutral-100 transition-colors duration-500 font-sans px-6 py-12">
+    <main className="min-h-screen w-full flex flex-col items-center justify-start md:justify-center relative overflow-y-auto overflow-x-hidden bg-neutral-50 dark:bg-[#000000] text-neutral-900 dark:text-neutral-100 transition-colors duration-500 font-sans px-6 py-12">
       {/* Subtle particle animation background */}
       <ParticleBackground isDark={currentIsDark} />
 
