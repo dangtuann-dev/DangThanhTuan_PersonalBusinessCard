@@ -228,11 +228,11 @@ export default function BankQR() {
                   href={getDeepLink()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-white bg-sky-600 hover:bg-sky-500 hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 shadow-md font-medium text-xs sm:text-sm"
+                  className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-neutral-300 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200 bg-white/40 dark:bg-black/40 hover:bg-neutral-150 dark:hover:bg-neutral-900 hover:text-black dark:hover:text-white hover:border-neutral-500 dark:hover:border-neutral-400 hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 shadow-sm font-medium text-xs sm:text-sm"
                 >
                   <CreditCard className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
                   <span>Open Banking App</span>
-                  <ExternalLink className="w-3.5 h-3.5 opacity-80 ml-0.5" />
+                  <ExternalLink className="w-3.5 h-3.5 opacity-60 ml-0.5" />
                 </a>
               </div>
               
