@@ -2,38 +2,34 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { QrCode, ChevronDown, Copy, Check, ExternalLink, CreditCard, Download } from "lucide-react";
+import { QrCode, ChevronDown, Copy, Check, ExternalLink, CreditCard, Download, X } from "lucide-react";
 
 const supportedApps = [
-  { id: "vcb", name: "Vietcombank" },
-  { id: "tcb", name: "Techcombank" },
-  { id: "mb", name: "MB Bank" },
-  { id: "icb", name: "VietinBank" },
-  { id: "bidv", name: "BIDV" },
-  { id: "vba", name: "Agribank" },
-  { id: "vpb", name: "VPBank" },
-  { id: "acb", name: "ACB" },
-  { id: "tpb", name: "TPBank" },
-  { id: "vib-2", name: "VIB" },
-  { id: "shb", name: "SHB" },
-  { id: "timo", name: "Timo" },
-  { id: "cake", name: "Cake by VPBank" },
+  { id: "vcb", name: "Vietcombank", shortName: "VCB" },
+  { id: "tcb", name: "Techcombank", shortName: "TCB" },
+  { id: "mb", name: "MB Bank", shortName: "MB" },
+  { id: "icb", name: "VietinBank", shortName: "CTG" },
+  { id: "bidv", name: "BIDV", shortName: "BID" },
+  { id: "vba", name: "Agribank", shortName: "VBA" },
+  { id: "vpb", name: "VPBank", shortName: "VPB" },
+  { id: "acb", name: "ACB", shortName: "ACB" },
+  { id: "tpb", name: "TPBank", shortName: "TPB" },
+  { id: "vib-2", name: "VIB", shortName: "VIB" },
+  { id: "shb", name: "SHB", shortName: "SHB" },
+  { id: "timo", name: "Timo", shortName: "TIM" },
+  { id: "cake", name: "Cake", shortName: "CAK" },
 ];
 
 export default function BankQR() {
   const [isOpen, setIsOpen] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [selectedApp, setSelectedApp] = useState("vcb");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const bankDetails = {
     bankName: "VietinBank",
     bankFullName: "Vietnam Joint Stock Company for Industry and Trade",
     accountNumber: "100875049556",
     accountName: "DANG THANH TUAN",
-  };
-
-  const getDeepLink = () => {
-    return `https://dl.vietqr.io/pay?app=${selectedApp}&ba=${bankDetails.accountNumber}@icb&bn=${encodeURIComponent(bankDetails.accountName)}`;
   };
 
   const handleCopy = async (e: React.MouseEvent) => {
@@ -51,10 +47,16 @@ export default function BankQR() {
     e.stopPropagation();
     const link = document.createElement("a");
     link.href = "/bank-qr-clean.png";
-    link.download = "VietinBank_QR_DangThanhTuan.png";
+    link.download = "bank-qr.png";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  };
+
+  const handleBankSelect = (appId: string) => {
+    setIsModalOpen(false);
+    const deepLink = `https://dl.vietqr.io/pay?app=${appId}&ba=${bankDetails.accountNumber}@icb&bn=${encodeURIComponent(bankDetails.accountName)}`;
+    window.open(deepLink, "_blank");
   };
 
   return (
@@ -108,13 +110,11 @@ export default function BankQR() {
             {/* Card Content body */}
             <div className="p-5 flex flex-col items-center gap-6">
               
-              {/* QR Image Container with scanner overlay and styling */}
-              <a 
-                href={getDeepLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group/qr relative flex flex-col items-center justify-center p-3.5 bg-white rounded-2xl shadow-inner border border-neutral-200/80 hover:border-neutral-400 transition-all duration-300 hover:scale-[1.02] cursor-pointer"
-                title="Click to open your mobile banking app"
+              {/* QR Image Container (Clicking downloads the QR image) */}
+              <button 
+                onClick={handleDownload}
+                className="group/qr relative flex flex-col items-center justify-center p-3.5 bg-white rounded-2xl shadow-inner border border-neutral-200/80 hover:border-neutral-400 transition-all duration-300 hover:scale-[1.02] cursor-pointer w-auto"
+                title="Click to download QR code image"
               >
                 {/* Visual scanner light line */}
                 <div className="absolute inset-x-3.5 h-[2px] bg-gradient-to-r from-transparent via-sky-500 to-transparent opacity-0 group-hover/qr:opacity-100 group-hover/qr:animate-scan z-10 pointer-events-none" />
@@ -133,46 +133,18 @@ export default function BankQR() {
                 
                 {/* Micro hover interaction text inside QR */}
                 <div className="absolute inset-0 bg-black/60 opacity-0 group-hover/qr:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2 rounded-2xl">
-                  <ExternalLink className="w-6 h-6 text-white animate-bounce" />
+                  <Download className="w-6 h-6 text-white animate-bounce" />
                   <span className="text-xs font-medium text-white px-3 text-center">
-                    Open Banking App
+                    Download QR Image
                   </span>
                 </div>
-              </a>
+              </button>
 
               {/* Informative instructions */}
               <div className="text-neutral-400 dark:text-neutral-500 text-center max-w-[320px] space-y-2">
                 <p className="text-[11px] sm:text-xs leading-relaxed">
-                  On mobile devices, select your bank below and <span className="font-semibold text-neutral-600 dark:text-neutral-300">tap the QR code</span> to open your app and transfer automatically.
+                  Scan the QR code to transfer. On mobile, <span className="font-semibold text-neutral-600 dark:text-neutral-300">tap the QR code</span> to save it, or click <span className="font-semibold text-neutral-600 dark:text-neutral-300">Open Banking App</span> to redirect.
                 </p>
-                <p className="text-[10px] sm:text-[11px] leading-relaxed italic opacity-85">
-                  Note: If your bank app fails to auto-fill details after logging in, please <span className="font-semibold text-neutral-600 dark:text-neutral-300">Save QR Image</span> and scan it from your gallery inside the app.
-                </p>
-              </div>
-
-              {/* Select Payer's Bank App */}
-              <div className="w-full flex flex-col gap-1.5 text-left">
-                <label htmlFor="bank-app-select" className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-neutral-400 dark:text-neutral-500">
-                  Select your Bank App
-                </label>
-                <div className="relative">
-                  <select
-                    id="bank-app-select"
-                    value={selectedApp}
-                    onChange={(e) => setSelectedApp(e.target.value)}
-                    className="w-full px-4 py-3 pr-10 rounded-xl border border-neutral-300 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200 bg-white/50 dark:bg-black/50 hover:border-neutral-400 dark:hover:border-neutral-700 transition-colors focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-transparent text-xs sm:text-sm font-medium appearance-none cursor-pointer shadow-sm"
-                  >
-                    {supportedApps.map((app) => (
-                      <option key={app.id} value={app.id} className="bg-white dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200">
-                        {app.name}
-                      </option>
-                    ))}
-                  </select>
-                  {/* Custom dropdown arrow */}
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-neutral-400 dark:text-neutral-500">
-                    <ChevronDown className="w-4 h-4" />
-                  </div>
-                </div>
               </div>
 
               {/* Bank Details Table */}
@@ -217,29 +189,80 @@ export default function BankQR() {
                 {/* Save QR Image Button */}
                 <button
                   onClick={handleDownload}
-                  className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-neutral-300 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200 bg-white/45 dark:bg-black/40 hover:bg-neutral-150 dark:hover:bg-neutral-900 hover:text-black dark:hover:text-white hover:border-neutral-500 dark:hover:border-neutral-400 hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 shadow-sm font-medium text-xs sm:text-sm"
+                  className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-neutral-300 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200 bg-white/40 dark:bg-black/40 hover:bg-neutral-150 dark:hover:bg-neutral-900 hover:text-black dark:hover:text-white hover:border-neutral-500 dark:hover:border-neutral-400 hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 shadow-sm font-medium text-xs sm:text-sm"
                 >
                   <Download className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
                   <span>Save QR Image</span>
                 </button>
 
                 {/* Open Banking App Button */}
-                <a
-                  href={getDeepLink()}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsModalOpen(true);
+                  }}
                   className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-neutral-300 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200 bg-white/40 dark:bg-black/40 hover:bg-neutral-150 dark:hover:bg-neutral-900 hover:text-black dark:hover:text-white hover:border-neutral-500 dark:hover:border-neutral-400 hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 shadow-sm font-medium text-xs sm:text-sm"
                 >
                   <CreditCard className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
                   <span>Open Banking App</span>
                   <ExternalLink className="w-3.5 h-3.5 opacity-60 ml-0.5" />
-                </a>
+                </button>
               </div>
               
             </div>
           </div>
         </div>
       </div>
+
+      {/* Select Banking App Modal */}
+      {isModalOpen && (
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setIsModalOpen(false)}
+        >
+          <div 
+            className="bg-neutral-50 dark:bg-neutral-950 border border-neutral-250 dark:border-neutral-850 rounded-2xl p-6 w-full max-w-sm sm:max-w-md shadow-2xl animate-scale-in text-left relative flex flex-col gap-5"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between pb-1">
+              <div>
+                <h3 className="text-base sm:text-lg font-bold text-neutral-800 dark:text-neutral-200">
+                  Select Banking App
+                </h3>
+                <p className="text-[11px] sm:text-xs text-neutral-400 dark:text-neutral-500 font-medium">
+                  Choose your app to transfer automatically
+                </p>
+              </div>
+              <button 
+                onClick={() => setIsModalOpen(false)}
+                className="p-1.5 rounded-lg text-neutral-400 dark:text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200 hover:bg-neutral-200/50 dark:hover:bg-neutral-850 transition-colors"
+                title="Close modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Grid of Bank Apps */}
+            <div className="grid grid-cols-3 gap-2.5 max-h-72 overflow-y-auto pr-1">
+              {supportedApps.map((app) => (
+                <button
+                  key={app.id}
+                  onClick={() => handleBankSelect(app.id)}
+                  className="flex flex-col items-center justify-center p-2.5 rounded-xl border border-neutral-200/60 dark:border-neutral-850 bg-white dark:bg-neutral-900/60 hover:bg-neutral-100 dark:hover:bg-neutral-800/80 hover:border-neutral-400 dark:hover:border-neutral-700 transition-all duration-200 text-center gap-1.5 hover:scale-[1.03] active:scale-[0.97]"
+                >
+                  <div className="w-8 h-8 rounded-full bg-neutral-200/80 dark:bg-neutral-800 flex items-center justify-center font-extrabold text-[10px] text-neutral-700 dark:text-neutral-300">
+                    {app.shortName}
+                  </div>
+                  <span className="text-[10px] sm:text-[11px] font-bold text-neutral-700 dark:text-neutral-300 leading-tight">
+                    {app.name}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
