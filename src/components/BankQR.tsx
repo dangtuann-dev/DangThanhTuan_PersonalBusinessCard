@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { QrCode, ChevronDown, Copy, Check, ExternalLink, CreditCard } from "lucide-react";
+import { QrCode, ChevronDown, Copy, Check, ExternalLink, CreditCard, Download } from "lucide-react";
 
 const supportedApps = [
   { id: "vcb", name: "Vietcombank" },
@@ -45,6 +45,16 @@ export default function BankQR() {
     } catch (err) {
       console.error("Failed to copy text: ", err);
     }
+  };
+
+  const handleDownload = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const link = document.createElement("a");
+    link.href = "/bank-qr-clean.png";
+    link.download = "VietinBank_QR_DangThanhTuan.png";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -131,9 +141,14 @@ export default function BankQR() {
               </a>
 
               {/* Informative instructions */}
-              <p className="text-[11px] sm:text-xs text-neutral-400 dark:text-neutral-500 text-center max-w-[280px] leading-relaxed">
-                On mobile devices, select your bank below and <span className="font-semibold text-neutral-600 dark:text-neutral-300">tap the QR code</span> to open your app and transfer automatically.
-              </p>
+              <div className="text-neutral-400 dark:text-neutral-500 text-center max-w-[320px] space-y-2">
+                <p className="text-[11px] sm:text-xs leading-relaxed">
+                  On mobile devices, select your bank below and <span className="font-semibold text-neutral-600 dark:text-neutral-300">tap the QR code</span> to open your app and transfer automatically.
+                </p>
+                <p className="text-[10px] sm:text-[11px] leading-relaxed italic opacity-85">
+                  Note: If your bank app fails to auto-fill details after logging in, please <span className="font-semibold text-neutral-600 dark:text-neutral-300">Save QR Image</span> and scan it from your gallery inside the app.
+                </p>
+              </div>
 
               {/* Select Payer's Bank App */}
               <div className="w-full flex flex-col gap-1.5 text-left">
@@ -197,17 +212,29 @@ export default function BankQR() {
                 </div>
               </div>
 
-              {/* Direct Deep Link Call To Action Button */}
-              <a
-                href={getDeepLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-neutral-300 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200 bg-white/40 dark:bg-black/40 hover:bg-neutral-100 dark:hover:bg-neutral-900 hover:text-black dark:hover:text-white hover:border-neutral-500 dark:hover:border-neutral-400 hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 shadow-sm font-medium text-xs sm:text-sm"
-              >
-                <CreditCard className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
-                <span>Open Banking App</span>
-                <ExternalLink className="w-3.5 h-3.5 opacity-60 ml-0.5" />
-              </a>
+              {/* Action Buttons Row */}
+              <div className="w-full flex flex-col sm:flex-row gap-3">
+                {/* Save QR Image Button */}
+                <button
+                  onClick={handleDownload}
+                  className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-neutral-300 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200 bg-white/45 dark:bg-black/40 hover:bg-neutral-150 dark:hover:bg-neutral-900 hover:text-black dark:hover:text-white hover:border-neutral-500 dark:hover:border-neutral-400 hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 shadow-sm font-medium text-xs sm:text-sm"
+                >
+                  <Download className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+                  <span>Save QR Image</span>
+                </button>
+
+                {/* Open Banking App Button */}
+                <a
+                  href={getDeepLink()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-white bg-sky-600 hover:bg-sky-500 hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 shadow-md font-medium text-xs sm:text-sm"
+                >
+                  <CreditCard className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+                  <span>Open Banking App</span>
+                  <ExternalLink className="w-3.5 h-3.5 opacity-80 ml-0.5" />
+                </a>
+              </div>
               
             </div>
           </div>
