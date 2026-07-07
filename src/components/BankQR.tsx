@@ -46,8 +46,8 @@ export default function BankQR() {
   const handleDownload = (e: React.MouseEvent) => {
     e.stopPropagation();
     const link = document.createElement("a");
-    link.href = "/bank-qr-clean.png";
-    link.download = "bank-qr.png";
+    link.href = "/bank-qr.jpg";
+    link.download = "bank-qr.jpg";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
