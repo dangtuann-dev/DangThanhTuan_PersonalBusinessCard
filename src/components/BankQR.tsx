@@ -13,8 +13,8 @@ export default function BankQR() {
     bankFullName: "Vietnam Joint Stock Company for Industry and Trade",
     accountNumber: "100875049556",
     accountName: "DANG THANH TUAN",
-    // Standard NAPAS VietQR deep link to open bank apps automatically
-    deepLink: "https://dl.vietqr.info/refer?text=00020101021138560010A0000007270126000697041501121008750495560208QRIBFTTA53037045802VN63046FBE",
+    // Standard VietQR.io deep link to open bank apps automatically
+    deepLink: "https://dl.vietqr.io/pay?ba=100875049556@icb&bn=DANG%20THANH%20TUAN",
   };
 
   const handleCopy = async (e: React.MouseEvent) => {
