@@ -64,6 +64,10 @@
   animation-delay: 400ms;
 }
 
+.animation-delay-500 {
+  animation-delay: 500ms;
+}
+
 /* Custom floating mesh animations */
 @keyframes float {
   0% {
@@ -95,5 +99,43 @@
 
 .animate-float-reverse {
   animation: float-reverse 30s ease-in-out infinite;
+}
+
+/* Custom QR code scanning line animation */
+@keyframes scan {
+  0% {
+    top: 5%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    top: 95%;
+    opacity: 0;
+  }
+}
+
+.animate-scan {
+  animation: scan 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Quick scale-in animation for checkmark */
+@keyframes scaleIn {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 

@@ -5,6 +5,7 @@ import { Sun, Moon, MapPin } from "lucide-react";
 import Avatar from "@/components/Avatar";
 import CTAButtons from "@/components/CTAButtons";
 import ParticleBackground from "@/components/ParticleBackground";
+import BankQR from "@/components/BankQR";
 
 export default function Home() {
   const [isDark, setIsDark] = useState(true);
@@ -87,6 +88,11 @@ export default function Home() {
         {/* CTA Buttons */}
         <div className="animate-fade-in-up animation-delay-400 w-full flex justify-center">
           <CTAButtons />
+        </div>
+
+        {/* Bank Account Transfer Section */}
+        <div className="animate-fade-in-up animation-delay-500 w-full flex justify-center">
+          <BankQR />
         </div>
       </div>
 
