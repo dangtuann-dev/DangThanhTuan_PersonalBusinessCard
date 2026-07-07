@@ -93,7 +93,7 @@ export default function BankQR() {
                 {/* High contrast QR code image */}
                 <div className="relative w-48 h-48 sm:w-52 sm:h-52 bg-white flex items-center justify-center overflow-hidden rounded-lg">
                   <Image
-                    src="/bank-qr-clean.jpg"
+                    src="/bank-qr-clean.svg"
                     alt="VietinBank QR Code Dang Thanh Tuan"
                     fill
                     sizes="(max-width: 640px) 192px, 208px"
