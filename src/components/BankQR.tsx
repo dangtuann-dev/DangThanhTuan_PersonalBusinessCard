@@ -90,14 +90,14 @@ export default function BankQR() {
                 {/* Visual scanner light line */}
                 <div className="absolute inset-x-3.5 h-[2px] bg-gradient-to-r from-transparent via-sky-500 to-transparent opacity-0 group-hover/qr:opacity-100 group-hover/qr:animate-scan z-10 pointer-events-none" />
                 
-                {/* High contrast QR code image zoomed in to the QR code portion */}
+                {/* High contrast QR code image */}
                 <div className="relative w-48 h-48 sm:w-52 sm:h-52 bg-white flex items-center justify-center overflow-hidden rounded-lg">
                   <Image
-                    src="/bank-qr.jpg"
+                    src="/bank-qr-clean.jpg"
                     alt="VietinBank QR Code Dang Thanh Tuan"
                     fill
                     sizes="(max-width: 640px) 192px, 208px"
-                    className="object-cover object-[center_46.6%] scale-[1.8] transition-transform duration-300 group-hover/qr:scale-[1.88]"
+                    className="object-contain transition-transform duration-300 group-hover/qr:scale-[1.05]"
                     priority
                   />
                 </div>
