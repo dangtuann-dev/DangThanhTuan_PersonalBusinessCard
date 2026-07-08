@@ -61,6 +61,28 @@ export const viewport: Viewport = {
   maximumScale: 1,
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Dang Thanh Tuan",
+  "url": "https://dangthanhtuan.vercel.app",
+  "image": "https://dangthanhtuan.vercel.app/avatar.jpg",
+  "jobTitle": "EdTech Founder & Product Builder",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Ho Chi Minh City",
+    "addressCountry": "Vietnam",
+  },
+  "sameAs": [
+    "https://www.linkedin.com/in/dang-thanh-tuan-9b58563a9/",
+    "https://www.facebook.com/thanhtuann.rb",
+    "https://www.instagram.com/tunatheavanti/",
+    "https://wa.me/84908779590",
+    "https://zalo.me/84908779590",
+    "https://github.com/dangtuann-dev",
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -71,6 +93,10 @@ export default function RootLayout({
       <body
         className={`${inter.variable} font-sans antialiased bg-black text-white transition-colors duration-300`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {children}
       </body>
     </html>
