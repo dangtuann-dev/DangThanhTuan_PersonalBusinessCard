@@ -60,7 +60,7 @@ export default function BankQR() {
   };
 
   return (
-    <div className="w-full mt-6 px-4 sm:px-0 animate-fade-in-up animation-delay-500">
+    <div className="w-full mt-8 px-4 sm:px-0 animate-fade-in-up animation-delay-500">
       {/* Main Accordion Card Container */}
       <div 
         className={`w-full rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white/40 dark:bg-black/40 backdrop-blur-md transition-all duration-300 overflow-hidden shadow-sm hover:shadow-md ${

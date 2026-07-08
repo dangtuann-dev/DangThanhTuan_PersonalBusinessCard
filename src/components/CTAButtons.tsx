@@ -58,6 +58,22 @@ const buttons: CTAButton[] = [
     tooltip: "LinkedIn",
   },
   {
+    name: "WhatsApp",
+    icon: WhatsAppIcon,
+    href: "https://wa.me/84908779590",
+    isExternal: true,
+    ariaLabel: "Chat with Dang Thanh Tuan on WhatsApp",
+    tooltip: "WhatsApp",
+  },
+  {
+    name: "Email",
+    icon: GmailIcon,
+    href: "mailto:dangtuann.dev@gmail.com",
+    isExternal: true,
+    ariaLabel: "Send an email to Dang Thanh Tuan",
+    tooltip: "Email",
+  },
+  {
     name: "Facebook",
     icon: FacebookIcon,
     href: "https://www.facebook.com/thanhtuann.rb",
@@ -74,14 +90,6 @@ const buttons: CTAButton[] = [
     tooltip: "Instagram",
   },
   {
-    name: "WhatsApp",
-    icon: WhatsAppIcon,
-    href: "https://wa.me/84908779590",
-    isExternal: true,
-    ariaLabel: "Chat with Dang Thanh Tuan on WhatsApp",
-    tooltip: "WhatsApp",
-  },
-  {
     name: "Zalo",
     icon: ZaloIcon,
     href: "https://zalo.me/84908779590",
@@ -89,19 +97,11 @@ const buttons: CTAButton[] = [
     ariaLabel: "Chat with Dang Thanh Tuan on Zalo",
     tooltip: "Zalo",
   },
-  {
-    name: "Email",
-    icon: GmailIcon,
-    href: "mailto:dangtuann.dev@gmail.com",
-    isExternal: true,
-    ariaLabel: "Send an email to Dang Thanh Tuan",
-    tooltip: "Email",
-  },
 ];
 
 export default function CTAButtons() {
   return (
-    <nav aria-label="Social profiles" className="w-full mt-10 max-w-[270px] sm:max-w-[320px] mx-auto">
+    <nav aria-label="Social profiles" className="w-full mt-8 max-w-[270px] sm:max-w-[320px] mx-auto">
       <div className="grid grid-cols-3 gap-x-3 gap-y-6 sm:gap-x-5 sm:gap-y-8 justify-items-center">
         {buttons.map((btn) => {
           const IconComponent = btn.icon;
