@@ -79,7 +79,6 @@ const jsonLd = {
     "https://www.instagram.com/tunatheavanti/",
     "https://wa.me/84908779590",
     "https://zalo.me/84908779590",
-    "https://github.com/dangtuann-dev",
   ],
 };
 
