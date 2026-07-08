@@ -101,8 +101,8 @@ const buttons: CTAButton[] = [
 
 export default function CTAButtons() {
   return (
-    <nav aria-label="Social profiles" className="w-full mt-10 max-w-lg mx-auto">
-      <div className="flex flex-wrap justify-center gap-x-3 gap-y-6 sm:gap-x-5 sm:gap-y-8">
+    <nav aria-label="Social profiles" className="w-full mt-10 max-w-[270px] sm:max-w-[320px] mx-auto">
+      <div className="grid grid-cols-3 gap-x-3 gap-y-6 sm:gap-x-5 sm:gap-y-8 justify-items-center">
         {buttons.map((btn) => {
           const IconComponent = btn.icon;
 
